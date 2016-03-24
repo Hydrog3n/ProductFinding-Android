@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,53 +13,52 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Service.Service;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
+public class MainActivity extends AppCompatActivity{
     private ListView listView;
     private Button buttonGet;
-
+    private List<Magasin> magasins;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Button
         buttonGet = (Button) findViewById(R.id.buttonGet);
-        buttonGet.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView);
-        sendRequest();
-    }
+        Call<List<Magasin>> callMagasins = Service.getInstance().listMagasin();
 
-    //New request VOLLEY
-    private void sendRequest(){
-        StringRequest stringRequest = new StringRequest("http://productfinding.herokuapp.com/magasin/",
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    showJSON(response);
+        callMagasins.enqueue(new Callback<List<Magasin>> () {
+
+            @Override
+            public void onResponse(Call<List<Magasin>> call, Response<List<Magasin>> response) {
+                if (response.isSuccessful()) {
+                    magasins = response.body();
+                    printMagasins();
                 }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
-                }
+
             }
-        );
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+
+            @Override
+            public void onFailure(Call<List<Magasin>> call, Throwable t) {
+                Log.e("Fail", "PAS OK");
+            }
+        });
+
     }
 
-    //Parse JSON
-    private void showJSON(String json){
-        ParseJSON pj = new ParseJSON(json);
-        pj.parseJSON();
-        CustomList cl = new CustomList(this, ParseJSON.ids,ParseJSON.names,ParseJSON.emails);
-        listView.setAdapter(cl);
+    private void printMagasins() {
+        for (Magasin mag : magasins) {
+            Log.d("Name", mag.getName());
+        }
     }
 
     @Override
@@ -81,9 +81,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    @Override
-    public void onClick(View v) {
-        sendRequest();
     }
 }
