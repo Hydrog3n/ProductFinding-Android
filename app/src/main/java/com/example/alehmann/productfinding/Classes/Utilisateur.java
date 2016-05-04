@@ -46,4 +46,8 @@ public class Utilisateur {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public void registerNewUser(Utilisateur utilisateur){
+        
+    }
 }
