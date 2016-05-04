@@ -59,4 +59,5 @@
         android:text="Inscription"
         android:onClick="button_inscription"
         android:textSize="20sp"/>
+
 </LinearLayout>
