@@ -21,10 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void button_connexion(View button){
-        //Test alehmann list recycler magasin
-        Intent i = new Intent(this, RecyclerMagasinActivity.class);
-        startActivity(i);
-
         String login = login_EditText.getText().toString();
         String password = login_EditText.getText().toString();
     }
