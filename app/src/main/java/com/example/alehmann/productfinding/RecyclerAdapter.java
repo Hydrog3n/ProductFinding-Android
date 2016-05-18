@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+<<<<<<< cfb9c044384109b1d2b8df5028e501ac85b8814f
 import com.example.alehmann.productfinding.Classes.Magasin;
 
+=======
+>>>>>>> Commit image downloader
 import java.io.InputStream;
 
 /**
@@ -52,6 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         private String _data;
         private Magasin myMagasin;
 
+
         public CellHolder(View itemView) {
             super(itemView);
             _cellLabel = (TextView) itemView.findViewById(R.id.cell_text);
@@ -62,7 +66,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         public void setData(String t){
             //New img loader Cell
             //TODO : Cancel download if already download
-
             new DownloadImageTask(_image).execute("http://dummyimage.com/600x400/000/fff");
             _cellLabel.setText(t);
             _data = t;
