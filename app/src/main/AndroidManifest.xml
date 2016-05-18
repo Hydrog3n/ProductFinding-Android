@@ -21,8 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< Updated upstream
         <activity android:name=".RecyclerMagasinActivity" />
         <activity android:name=".DetailMagasinActivity"></activity>
+=======
+        <activity
+            android:name=".NewMagasinActivity"
+            android:label="NouveauMagasin" />
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

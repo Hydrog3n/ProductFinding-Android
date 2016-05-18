@@ -30,4 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, RecyclerMagasinActivity.class);
         startActivity(i);
     }
+
+    public void button_addMag(View button){
+        Intent intent = new Intent(LoginActivity.this, NewMagasinActivity.class);
+        startActivity(intent);
+    }
 }
