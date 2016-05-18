@@ -4,10 +4,18 @@ public class Magasin {
 
     private long id;
     private String name;
+    private String address;
+    private String cp;
+    private String ville;
+    private String logoUrl;
 
-    public Magasin(long id, String name) {
+    public Magasin(long id, String name, String address, String cp, String ville) {
         this.id = id;
         this.name = name;
+        this.address = address;
+        this.cp = cp;
+        this.ville = ville;
+
     }
 
     public long getId() {
@@ -24,5 +32,37 @@ public class Magasin {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }

@@ -23,8 +23,8 @@ public class NewMagasinActivity extends AppCompatActivity {
 
     public void button_ajout(View button){
         String nomMag = nom_magasain_editText.getText().toString();
-        Magasin Mag = new Magasin(1,nomMag);
-        Service.service.createMagasin(Mag);
+        //Magasin Mag = new Magasin(1,nomMag);
+       //Service.service.createMagasin(Mag);
 
 
     }

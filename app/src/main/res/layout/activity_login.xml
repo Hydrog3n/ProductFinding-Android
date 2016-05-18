@@ -59,5 +59,13 @@
         android:text="Inscription"
         android:onClick="button_inscription"
         android:textSize="20sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ajoutMagasin"
+        android:text="ajouter un Magasin"
+        android:onClick="button_addMag"
+        android:textSize="20sp"/>
 
 </LinearLayout>
