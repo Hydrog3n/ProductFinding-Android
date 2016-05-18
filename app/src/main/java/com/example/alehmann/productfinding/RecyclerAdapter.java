@@ -2,12 +2,19 @@ package com.example.alehmann.productfinding;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 /**
  * Created by alehmann on 04/05/2016.
@@ -39,8 +46,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView _cellLabel;
-        ImageView _image;
+        public ImageView _image;
         private String _data;
+
 
         public CellHolder(View itemView) {
             super(itemView);
@@ -50,6 +58,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         }
 
         public void setData(String t){
+            //New img loader Cell
+            //TODO : Cancel download if already download
+            new DownloadImageTask(_image).execute("http://dummyimage.com/600x400/000/fff");
             _cellLabel.setText(t);
             _data = t;
         }

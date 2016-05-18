@@ -18,6 +18,5 @@ public class DetailMagasinActivity extends AppCompatActivity {
         if (detailText != null) {
             textView.setText(detailText);
         }
-
     }
 }

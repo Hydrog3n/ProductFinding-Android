@@ -26,7 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void button_inscription(View button){
-        Intent i = new Intent(this, MainActivity.class);
+        //TODO Change Intent
+        Intent i = new Intent(this, RecyclerMagasinActivity.class);
         startActivity(i);
     }
 }
