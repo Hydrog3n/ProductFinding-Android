@@ -25,4 +25,5 @@ public class Magasin {
     public void setName(String name) {
         this.name = name;
     }
+
 }

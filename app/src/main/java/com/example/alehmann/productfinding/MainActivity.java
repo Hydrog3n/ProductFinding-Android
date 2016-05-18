@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity{
                 Log.e("Fail", "PAS OK");
             }
         });
-
     }
 
     private void printMagasins() {

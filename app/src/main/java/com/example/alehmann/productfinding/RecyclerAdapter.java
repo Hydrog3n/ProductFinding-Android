@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alehmann.productfinding.Classes.Magasin;
+
 import java.io.InputStream;
 
 /**
@@ -48,7 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         private final TextView _cellLabel;
         public ImageView _image;
         private String _data;
-
+        private Magasin myMagasin;
 
         public CellHolder(View itemView) {
             super(itemView);
@@ -60,6 +62,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         public void setData(String t){
             //New img loader Cell
             //TODO : Cancel download if already download
+
             new DownloadImageTask(_image).execute("http://dummyimage.com/600x400/000/fff");
             _cellLabel.setText(t);
             _data = t;
