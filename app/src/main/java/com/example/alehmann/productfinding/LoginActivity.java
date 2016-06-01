@@ -1,6 +1,5 @@
 package com.example.alehmann.productfinding;
 
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,10 +27,5 @@ public class LoginActivity extends AppCompatActivity {
     public void button_inscription(View button){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-    }
-
-    public void button_addMag(View button){
-        Intent intent = new Intent(LoginActivity.this, NewMagasinActivity.class);
-        startActivity(intent);
     }
 }
