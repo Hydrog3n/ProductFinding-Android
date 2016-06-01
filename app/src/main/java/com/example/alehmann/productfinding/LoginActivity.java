@@ -1,9 +1,5 @@
 package com.example.alehmann.productfinding;
 
-<<<<<<< 9acc8191803a79f66d212fcbc7b341bdb8f8a8c7
-
-=======
->>>>>>> Activité inscription et lien POST avec Webservice Utilisateur
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
