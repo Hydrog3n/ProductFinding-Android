@@ -9,14 +9,6 @@ public class Magasin {
     private String ville;
     private String logoUrl;
 
-    public Magasin(long id, String name, String address, String cp, String ville) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.cp = cp;
-        this.ville = ville;
-
-    }
     public Magasin(String name, String address, String cp, String ville) {
         this.name = name;
         this.address = address;
@@ -24,11 +16,14 @@ public class Magasin {
         this.ville = ville;
 
     }
+    public Magasin(long id, String name, String address, String cp, String ville) {
+        this(name,address,cp,ville);
+        this.id = id;
+
+    }
     public Magasin(String name, String address, String cp, String ville,String url) {
-        this.name = name;
-        this.address = address;
-        this.cp = cp;
-        this.ville = ville;
+
+        this(name,address,cp,ville);
         this.logoUrl = url;
 
     }
