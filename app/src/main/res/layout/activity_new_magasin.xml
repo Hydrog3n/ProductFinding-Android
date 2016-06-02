@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nom du magasin :"
-        android:id="@+id/nom_magasain_vextview"
+        android:id="@+id/nom_magasin_vextview"
         android:textSize="15sp"
         android:textStyle="bold" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nom_magasain_editText"
+        android:id="@+id/nom_magasin_editText"
         android:inputType="text"
         android:layout_marginTop="10dp" />
 
@@ -29,13 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Adresse du magasin :"
-        android:id="@+id/adresse_magasain_vextview"
+        android:id="@+id/adresse_magasin_vextview"
         android:textSize="15sp"
         android:textStyle="bold" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/adresse_magasain_editText"
+        android:id="@+id/adresse_magasin_editText"
         android:inputType="text"
         android:layout_marginTop="10dp" />
 
@@ -43,13 +43,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ville du magasin :"
-        android:id="@+id/ville_magasain_vextview"
+        android:id="@+id/ville_magasin_vextview"
         android:textSize="15sp"
         android:textStyle="bold" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ville_magasain_editText"
+        android:id="@+id/ville_magasin_editText"
         android:inputType="text"
         android:layout_marginTop="10dp" />
 
@@ -57,13 +57,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Code postale du magasin :"
-        android:id="@+id/cp_magasain_vextview"
+        android:id="@+id/cp_magasin_vextview"
         android:textSize="15sp"
         android:textStyle="bold" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cp_magasain_editText"
+        android:id="@+id/cp_magasin_editText"
         android:inputType="number"
         android:maxLength="5"
         android:layout_marginTop="10dp" />

@@ -17,7 +17,21 @@ public class Magasin {
         this.ville = ville;
 
     }
+    public Magasin(String name, String address, String cp, String ville) {
+        this.name = name;
+        this.address = address;
+        this.cp = cp;
+        this.ville = ville;
 
+    }
+    public Magasin(String name, String address, String cp, String ville,String url) {
+        this.name = name;
+        this.address = address;
+        this.cp = cp;
+        this.ville = ville;
+        this.logoUrl = url;
+
+    }
     public long getId() {
         return id;
     }
