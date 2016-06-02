@@ -51,7 +51,6 @@ public class NewMagasinActivity extends AppCompatActivity {
                 Log.e("non",t.getMessage());
             }
         });
-        //Service.service.createMagasin(Mag);
 
 
     }
