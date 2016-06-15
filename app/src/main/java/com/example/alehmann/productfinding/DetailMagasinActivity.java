@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class DetailMagasinActivity extends AppCompatActivity {
-    public static final String DETAIL_TEXT_KEY = "Detail_text";
     private TextView textView;
+    private String nameMag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,9 +14,16 @@ public class DetailMagasinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_magasin);
         textView = (TextView)findViewById(R.id.text_view);
 
-        String detailText = getIntent().getStringExtra(DETAIL_TEXT_KEY);
-        if (detailText != null) {
-            textView.setText(detailText);
-        }
+        //Get bundle from RecyclerView and test content bundle
+        Bundle objectBundle  = this.getIntent().getExtras();
+
+        //On récupère les données du Bundle
+        if (objectBundle != null && objectBundle.containsKey("Name")) {
+            nameMag = this.getIntent().getStringExtra("Name");
+        }else
+            nameMag = "Error";
+
+        //Set mag Name from bundle
+        textView.setText(nameMag);
     }
 }

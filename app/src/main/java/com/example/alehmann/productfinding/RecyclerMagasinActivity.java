@@ -15,7 +15,6 @@ import java.net.URL;
 
 public class RecyclerMagasinActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
