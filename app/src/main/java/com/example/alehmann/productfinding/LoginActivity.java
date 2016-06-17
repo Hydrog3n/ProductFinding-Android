@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.alehmann.productfinding.Magasin.RecyclerMagasinActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText login_EditText;

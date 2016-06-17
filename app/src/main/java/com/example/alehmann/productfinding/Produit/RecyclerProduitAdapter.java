@@ -1,14 +1,9 @@
-package com.example.alehmann.productfinding;
+package com.example.alehmann.productfinding.Produit;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Classes.Produit;
+import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,30 +23,32 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by alehmann on 04/05/2016.
+ * Created by alehmann on 17/06/2016.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHolder>{
+public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduitAdapter.CellHolder>{
 
 
     private final Context _context;
 
-    private List<Magasin> magasins = new ArrayList<Magasin>();
-    public RecyclerAdapter(Context c) {
+    private List<Produit> produits = new ArrayList<Produit>();
+    public RecyclerProduitAdapter(Context c) {
         _context = c;
-        Call<List<Magasin>> callMagasins = Service.getInstance().listMagasin();
 
-        callMagasins.enqueue(new Callback<List<Magasin>> () {
+        //TODO : find a way to pass the magasin id to get product
+        Call<List<Produit>> callProduits = Service.getInstance().getProduitMagasin("1");
+
+        callProduits.enqueue(new Callback<List<Produit>>() {
 
             @Override
-            public void onResponse(Call<List<Magasin>> call, Response<List<Magasin>> response) {
+            public void onResponse(Call<List<Produit>> call, Response<List<Produit>> response) {
                 if (response.isSuccessful()) {
-                    magasins = response.body();
+                    produits = response.body();
                     notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Magasin>> call, Throwable t) {
+            public void onFailure(Call<List<Produit>> call, Throwable t) {
                 Toast toast = Toast.makeText(_context, t.getMessage(), Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -67,12 +63,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
 
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
-        cellHolder.setData(magasins.get(i));
+        cellHolder.setData(produits.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return magasins.size();
+        return produits.size();
     }
 
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -80,7 +76,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
         private final TextView _cellLabel;
 
         private ImageView _image;
-        //private Magasin _data;
         private Bundle objectBundle;
 
         public CellHolder(View itemView) {
@@ -89,37 +84,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellHo
             _cellLabel.setOnClickListener(this);
             _image = (ImageView)itemView.findViewById(R.id.cell_image);
         }
-
-        public void setData(Magasin mag){
-            //Create bundle
+        public void setData(Produit prod){
+            //TODO Pass Object Produits in EXTRAS
+            //Creating objectBundle to pass in extra
             objectBundle = new Bundle();
+            //String idStringMap = Long.toString(mag.getId());
+            //objectBundle.putString("IDMAG",idStringMap);
+            //objectBundle.putString("Address", mag.getAddress());
+            //objectBundle.putString("CP", mag.getCp());
+            //objectBundle.putString("Ville", mag.getVille());
 
-            Log.e("test magasin", mag.getName());
+            //if (mag.getLogoUrl() != null)
+            //    Picasso.with(_context).load(mag.getLogoUrl()).into(_image);
+            //else
+            //    _image.setImageBitmap(null);
 
-            //Set name mag in bundle
-            objectBundle.putString("Name", mag.getName());
-
-            //Verify if image exist
-            if (mag.getLogoUrl() != null) {
-                //Image in cell
-                //TODO Set image in cell correctly not async
-                _image.setImageBitmap(null);
-                new DownloadImageTask(_image).execute(mag.getLogoUrl());
-            }
-            else
-                Log.e("Erreur Magasin", "GetLogoNull; Sur ce maragsin -> " + mag.getName());
-
-            //Name Mag in cell
-            _cellLabel.setText(mag.getName());
-            //_data = mag;
+            _cellLabel.setText(prod.getDescriptif());
         }
 
         @Override
         public void onClick(View view) {
-            Intent detailIntent = new Intent(_context,DetailMagasinActivity.class);
+            //TODO : Detail produit Activity
+            //Intent detailIntent = new Intent(_context,DetailMagasinActivity.class);
             //detailIntent.putExtra(DetailMagasinActivity.MAGASIN_NAME, _data);
-            detailIntent.putExtras(objectBundle);
-            _context.startActivity(detailIntent);
+            //detailIntent.putExtras(objectBundle);
+            //_context.startActivity(detailIntent);
         }
     }
 }

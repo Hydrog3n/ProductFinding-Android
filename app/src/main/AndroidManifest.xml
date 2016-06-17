@@ -21,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecyclerMagasinActivity" />
-        <activity android:name=".DetailMagasinActivity"></activity>
-
+        <activity android:name=".Magasin.RecyclerMagasinActivity" />
+        <activity android:name=".Magasin.DetailMagasinActivity" />
         <activity
             android:name=".NewMagasinActivity"
             android:label="NouveauMagasin" />
+        <activity android:name=".Produit.RecyclerProduitActivity"></activity>
     </application>
 
 </manifest>
