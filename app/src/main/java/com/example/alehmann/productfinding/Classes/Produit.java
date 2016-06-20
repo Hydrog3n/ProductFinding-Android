@@ -7,6 +7,12 @@ public class Produit {
     private String imageUrl;
     private String ean;
 
+    public Produit(String descProd, String marqueProd, String url) {
+        descriptif = descProd;
+        marque = marqueProd;
+        imageUrl = url;
+    }
+
 
     public String getEan() {
         return ean;
@@ -15,16 +21,6 @@ public class Produit {
     public void setEan(String ean) {
         this.ean = ean;
     }
-
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
 
     public int getId() {
         return id;

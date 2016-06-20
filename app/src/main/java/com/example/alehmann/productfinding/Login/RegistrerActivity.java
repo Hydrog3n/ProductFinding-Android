@@ -1,4 +1,4 @@
-package com.example.alehmann.productfinding;
+package com.example.alehmann.productfinding.Login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.alehmann.productfinding.Classes.Utilisateur;
+import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
+import com.example.alehmann.productfinding.Session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,5 +57,6 @@ public class RegistrerActivity extends AppCompatActivity {
                 firstname_editText.getText().toString(),
                 lastname_editText.getText().toString()
         );
+        new SessionManager(getApplicationContext()).checkLogin();
     }
 }

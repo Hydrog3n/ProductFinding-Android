@@ -1,4 +1,4 @@
-package com.example.alehmann.productfinding;
+package com.example.alehmann.productfinding.Produit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.alehmann.productfinding.Classes.Produit;
+import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.example.alehmann.productfinding;
+package com.example.alehmann.productfinding.Magasin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Produit.NewProduitActivity;
+import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 
 import retrofit2.Call;
@@ -38,18 +41,19 @@ public class NewMagasinActivity extends AppCompatActivity {
         String adresseMag   = adresse_magasin_editText.getText().toString();
         String villeMag     = ville_magasin_editText.getText().toString();
         String cpMag        = cp_magasin_editText.getText().toString();
-        String url = "http://dummyimage.com/600x400/000/fff";
+        String url = "http://lorempixel.com/400/200";
         Magasin Mag = new Magasin(nomMag,adresseMag,cpMag,villeMag,url);
         Call<Magasin> call = Service.getInstance().createMagasin(Mag);
         call.enqueue(new Callback<Magasin>() {
             @Override
             public void onResponse(Call<Magasin> call, Response<Magasin> response) {
-                Log.e("ca marche","okok");
+                Toast.makeText(getApplicationContext(), "Magasin ajouté avec succes", Toast.LENGTH_LONG);
+
             }
 
             @Override
             public void onFailure(Call<Magasin> call, Throwable t) {
-                Log.e("non",t.getMessage());
+                Toast.makeText(getApplicationContext(), "Magasin n'a pas était ajouté", Toast.LENGTH_LONG);
             }
         });
 
@@ -60,8 +64,4 @@ public class NewMagasinActivity extends AppCompatActivity {
         Intent i = new Intent(this, NewProduitActivity.class);
         startActivity(i);
     }
-
-
-
-
 }

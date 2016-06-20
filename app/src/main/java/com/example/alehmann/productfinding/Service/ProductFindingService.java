@@ -15,26 +15,39 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ProductFindingService {
+    //
+    // REQUEST FOR MAGASIN
+    //
     @GET("magasin")
     Call<List<Magasin>> listMagasin();
 
-    @GET("magasin/{id}")
-    Call<Magasin> thisMagasin(@Path("id") String id);
     @POST("magasin/")
     Call<Magasin> createMagasin(@Body Magasin magasin);
+
+    @GET("magasin/{id}")
+    Call<Magasin> thisMagasin(@Path("id") String id);
 
     @GET("magasin/{id}/produits/")
     Call<List<Produit>> getProduitMagasin(@Path("id") String id);
+
+
+    //
+    // REQUEST FOR UTILISATEUR
+    //
     @POST("utilisateur/new")
     Call<Utilisateur> createUser(@Body Utilisateur utilisateur);
 
-    @GET("produit/{id}")
-    Call<Produit> thisProduit(@Path("id") String id);
-
-    @POST("magasin/")
-    Call<Magasin> createMagasin(@Body Magasin magasin);
     @POST("utilisateur/")
     Call<Utilisateur> loginUser(@Body List<String> loginInfos);
+
+    //
+    // REQUEST FOR PRODUIT
+    //
+    @POST("produit/")
+    Call<Produit> createProduit(@Body Produit produit);
+
+    @GET("produit/{id}")
+    Call<Produit> thisProduit(@Path("id") String id);
 
     @POST("produit/magasin/{id}")
     Call<List<Produit>> searchProduitInMagasin(@Body String search, @Path("id") String id);
