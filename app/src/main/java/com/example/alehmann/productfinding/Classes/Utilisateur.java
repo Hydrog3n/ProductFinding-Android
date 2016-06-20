@@ -6,6 +6,7 @@ public class Utilisateur {
     private String password;
     private String firstname;
     private String lastname;
+    private String token;
 
     public Utilisateur(String username, String password, String firstname, String lastname){
         this.username = username;
@@ -55,5 +56,13 @@ public class Utilisateur {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

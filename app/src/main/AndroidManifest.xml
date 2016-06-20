@@ -14,25 +14,25 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Login.LoginActivity"/>
+        <activity android:name=".Magasin.RecyclerMagasinActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Magasin.RecyclerMagasinActivity" />
         <activity android:name=".Magasin.DetailMagasinActivity" />
 
         <activity
-            android:name=".NewMagasinActivity"
+            android:name=".Magasin.NewMagasinActivity"
             android:label="NouveauMagasin" />
 
         <activity
-            android:name=".NewProduitActivity"
+            android:name=".Produit.NewProduitActivity"
             android:label="NouveauProduit" />
 
-        <activity android:name=".RegistrerActivity"></activity>
+        <activity android:name=".Login.RegistrerActivity"></activity>
 
     </application>
 
