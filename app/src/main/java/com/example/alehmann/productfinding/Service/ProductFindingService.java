@@ -19,10 +19,16 @@ public interface ProductFindingService {
     @GET("magasin/{id}")
     Call<Magasin> thisMagasin(@Path("id") String id);
 
-    @GET("magasin/produit/{id}")
+    @GET("magasin/{id}/produits/")
     Call<List<Produit>> getProduitMagasin(@Path("id") String id);
+
+    @GET("produit/{id}")
+    Call<Produit> thisProduit(@Path("id") String id);
 
     @POST("magasin/")
     Call<Magasin> createMagasin(@Body Magasin magasin);
+
+    @POST("produit/magasin/{id}")
+    Call<List<Produit>> searchProduitInMagasin(@Body String search, @Path("id") String id);
 
 }

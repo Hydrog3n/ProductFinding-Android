@@ -106,7 +106,6 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
         @Override
         public void onClick(View view) {
             Intent detailIntent = new Intent(_context,DetailMagasinActivity.class);
-            //detailIntent.putExtra(DetailMagasinActivity.MAGASIN_NAME, _data);
             detailIntent.putExtras(objectBundle);
             _context.startActivity(detailIntent);
         }

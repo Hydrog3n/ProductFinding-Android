@@ -26,7 +26,8 @@
         <activity
             android:name=".NewMagasinActivity"
             android:label="NouveauMagasin" />
-        <activity android:name=".Produit.RecyclerProduitActivity"></activity>
+        <activity android:name=".Produit.RecyclerProduitActivity" />
+        <activity android:name=".Produit.DetailProduitActivity"></activity>
     </application>
 
 </manifest>

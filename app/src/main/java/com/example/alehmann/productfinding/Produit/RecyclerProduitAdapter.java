@@ -29,30 +29,14 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
 
 
     private final Context _context;
+    private List<Produit> _produitList;
 
-    private List<Produit> produits = new ArrayList<Produit>();
-    public RecyclerProduitAdapter(Context c) {
+    public RecyclerProduitAdapter(Context c, List<Produit> produitList) {
         _context = c;
 
         //TODO : find a way to pass the magasin id to get product
-        Call<List<Produit>> callProduits = Service.getInstance().getProduitMagasin("1");
+        _produitList = produitList;
 
-        callProduits.enqueue(new Callback<List<Produit>>() {
-
-            @Override
-            public void onResponse(Call<List<Produit>> call, Response<List<Produit>> response) {
-                if (response.isSuccessful()) {
-                    produits = response.body();
-                    notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Produit>> call, Throwable t) {
-                Toast toast = Toast.makeText(_context, t.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
-            }
-        });
     }
 
     @Override
@@ -63,12 +47,17 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
 
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
-        cellHolder.setData(produits.get(i));
+        cellHolder.setData(_produitList.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return produits.size();
+        return _produitList.size();
+    }
+
+    public void setProduits(List<Produit> p) {
+        _produitList = p;
+        notifyDataSetChanged();
     }
 
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -88,7 +77,9 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
             //TODO Pass Object Produits in EXTRAS
             //Creating objectBundle to pass in extra
             objectBundle = new Bundle();
-            //String idStringMap = Long.toString(mag.getId());
+            String idStringProd = Long.toString(prod.getId());
+            objectBundle.putString("IDPROD",idStringProd);
+
             //objectBundle.putString("IDMAG",idStringMap);
             //objectBundle.putString("Address", mag.getAddress());
             //objectBundle.putString("CP", mag.getCp());
@@ -104,11 +95,9 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
 
         @Override
         public void onClick(View view) {
-            //TODO : Detail produit Activity
-            //Intent detailIntent = new Intent(_context,DetailMagasinActivity.class);
-            //detailIntent.putExtra(DetailMagasinActivity.MAGASIN_NAME, _data);
-            //detailIntent.putExtras(objectBundle);
-            //_context.startActivity(detailIntent);
+            Intent detailIntent = new Intent(_context,DetailProduitActivity.class);
+            detailIntent.putExtras(objectBundle);
+            _context.startActivity(detailIntent);
         }
     }
 }

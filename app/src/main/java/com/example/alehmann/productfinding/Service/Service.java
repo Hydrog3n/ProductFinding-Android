@@ -9,7 +9,7 @@ public class Service {
 
     private Service() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://productfinding.heroku.com/")
+                .baseUrl("http://productfinding.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
