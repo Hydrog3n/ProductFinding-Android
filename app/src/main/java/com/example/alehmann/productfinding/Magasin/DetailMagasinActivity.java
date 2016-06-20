@@ -43,67 +43,65 @@ public class DetailMagasinActivity extends AppCompatActivity {
     private RecyclerView recyclerViewProduits;
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateProduitData();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //UI Content
         _context = getApplicationContext();
 
         setContentView(R.layout.activity_detail_magasin);
+
         nameMagTxV = (TextView) findViewById(R.id.text_view_Mag_Name);
         cpMagTxV = (TextView) findViewById(R.id.text_view_Mag_Cp);
         villeMagTxV = (TextView) findViewById(R.id.text_view_Mag_Ville);
         addressMagTxV = (TextView) findViewById(R.id.text_view_Mag_Address);
         imageMagasinView = (ImageView) findViewById(R.id.image_magasin_view);
 
-
-
-        //Set mag Name from bundle
-        //Get bundle from RecyclerView and test content bundle
-        Bundle objectBundle = this.getIntent().getExtras();
-
-        if (objectBundle == null) {
-            Toast toast = Toast.makeText(this, "ERROR bundle null", Toast.LENGTH_LONG);
-            toast.show();
-            return;
-        }
-
-        String id = this.getIntent().getStringExtra("IDMAG");
-
-
-
-        Call<List<Produit>> callProduit = Service.getInstance().getProduitMagasin(id);
-
-        //Load recycler view inside Detail magasin activity, passing the id for request
-        //new RecyclerProduitAdapter(this, id);
-        Call<Magasin> callMagasins = Service.getInstance().thisMagasin(id);
-
-
-        //Request retrofit to get a Magasin
-        callMagasins.enqueue(new Callback<Magasin>() {
-
-            @Override
-            public void onResponse(Call<Magasin> call, Response<Magasin> response) {
-                if (response.isSuccessful()) {
-                    mag = response.body();
-                    setData(mag);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Magasin> call, Throwable t) {
-                Log.e("Error", "Error getting mag");
-            }
-        });
-
+        mag = (Magasin) this.getIntent().getExtras().getSerializable("mag");
 
         _produits = new ArrayList<Produit>();
 
         recyclerViewProduits = (RecyclerView) findViewById(R.id.recycler_produit_view);
         recyclerViewProduits.setAdapter(new RecyclerProduitAdapter(this, _produits));
         recyclerViewProduits.setLayoutManager(new LinearLayoutManager(this));
+        //updateProduitData();
+
+    }
+
+    public void updateProduitList() {
+        RecyclerProduitAdapter rpa = (RecyclerProduitAdapter) recyclerViewProduits.getAdapter();
+        rpa.setProduits(_produits);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                Intent r = new Intent(this, AddProduitActivity.class);
+                r.putExtra("mag", mag);
+                startActivity(r);
 
 
-        //Request Prod
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateProduitData() {
+        Call<List<Produit>> callProduit = Service.getInstance().getProduitMagasin(""+mag.getId()+"");
+
         callProduit.enqueue(new Callback<List<Produit>>() {
 
             @Override
@@ -121,41 +119,5 @@ public class DetailMagasinActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void updateProduitList() {
-        RecyclerProduitAdapter rpa = (RecyclerProduitAdapter) recyclerViewProduits.getAdapter();
-        rpa.setProduits(_produits);
-    }
-
-
-    public void setData(Magasin magasinShow){
-        nameMagTxV.setText(magasinShow.getName());
-        cpMagTxV.setText(magasinShow.getCp());
-        villeMagTxV.setText(magasinShow.getVille());
-        addressMagTxV.setText(magasinShow.getAddress());
-        if (mag.getLogoUrl() != null)
-            Picasso.with(this).load(mag.getLogoUrl()).into(imageMagasinView);
-        else
-            imageMagasinView.setImageBitmap(null);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_add:
-                Intent r = new Intent(this, AddProduitActivity.class);
-                startActivity(r);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
 }

@@ -73,6 +73,7 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
             _cellLabel.setOnClickListener(this);
             _image = (ImageView)itemView.findViewById(R.id.cell_image);
         }
+
         public void setData(Produit prod){
             //TODO Pass Object Produits in EXTRAS
             //Creating objectBundle to pass in extra

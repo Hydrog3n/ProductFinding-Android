@@ -1,7 +1,9 @@
 package com.example.alehmann.productfinding.Classes;
 
-public class Produit {
-    private int id;
+import java.io.Serializable;
+
+public class Produit implements Serializable {
+    private Long id;
     private String descriptif;
     private String marque;
     private String imageUrl;
@@ -13,6 +15,11 @@ public class Produit {
         imageUrl = url;
     }
 
+    public Produit(String descProd, String marqueProd, String url, String codebarre) {
+        this(descProd, marqueProd, url);
+        ean = codebarre;
+    }
+
 
     public String getEan() {
         return ean;
@@ -22,11 +29,11 @@ public class Produit {
         this.ean = ean;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
