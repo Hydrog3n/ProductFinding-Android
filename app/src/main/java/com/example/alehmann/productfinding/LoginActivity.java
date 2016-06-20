@@ -28,4 +28,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+    public void button_addMag(View button){
+        Intent r = new Intent(this, NewMagasinActivity.class);
+        startActivity(r);
+    }
 }
