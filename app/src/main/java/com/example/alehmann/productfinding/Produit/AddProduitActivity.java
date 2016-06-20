@@ -17,7 +17,7 @@ import retrofit2.Response;
 /**
  * Created by MeAmine on 15/06/2016.
  */
-public class NewProduitActivity extends AppCompatActivity {
+public class AddProduitActivity extends AppCompatActivity {
     EditText descriptif_produit_editText;
     EditText marque_produit_editText;
 
@@ -38,13 +38,14 @@ public class NewProduitActivity extends AppCompatActivity {
         call.enqueue(new Callback<Produit>() {
             @Override
             public void onResponse(Call<Produit> call, Response<Produit> response) {
-                Log.e("ca marche","okok");
+                //TODO
             }
 
             @Override
             public void onFailure(Call<Produit> call, Throwable t) {
-                Log.e("non",t.getMessage());
+                //TODO
             }
+
         });
 
 

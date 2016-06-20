@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Magasin.NewMagasinActivity">
+    tools:context=".Magasin.AddMagasinActivity">
 
 
     <TextView
@@ -77,20 +77,5 @@
         android:text="Ajouter"
         android:onClick="button_ajout"
         android:textSize="20sp"/>
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:id="@+id/ajoutProduit"
-        android:text="ajouter un produit"
-        android:onClick="button_addProd"
-        android:textSize="20sp"/>
-
-
-
-
-
 
 </LinearLayout>

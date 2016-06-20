@@ -25,11 +25,11 @@
         <activity android:name=".Magasin.DetailMagasinActivity" />
 
         <activity
-            android:name=".Magasin.NewMagasinActivity"
+            android:name=".Magasin.AddMagasinActivity"
             android:label="NouveauMagasin" />
 
         <activity
-            android:name=".Produit.NewProduitActivity"
+            android:name=".Produit.AddProduitActivity"
             android:label="NouveauProduit" />
 
         <activity android:name=".Login.RegistrerActivity"></activity>
