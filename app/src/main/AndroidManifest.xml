@@ -27,6 +27,11 @@
         <activity
             android:name=".NewMagasinActivity"
             android:label="NouveauMagasin" />
+
+        <activity
+            android:name=".NewProduitActivity"
+            android:label="NouveauProduit" />
+
         <activity android:name=".RegistrerActivity"></activity>
 
     </application>

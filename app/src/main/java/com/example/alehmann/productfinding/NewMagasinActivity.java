@@ -1,5 +1,6 @@
 package com.example.alehmann.productfinding;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -53,6 +54,11 @@ public class NewMagasinActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void button_addProd(View button){
+        Intent i = new Intent(this, NewProduitActivity.class);
+        startActivity(i);
     }
 
 

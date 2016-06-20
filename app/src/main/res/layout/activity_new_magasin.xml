@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.alehmann.productfinding.LoginActivity">
+    tools:context="com.example.alehmann.productfinding.NewMagasinActivity">
 
 
     <TextView
@@ -79,7 +79,14 @@
         android:textSize="20sp"/>
 
 
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ajoutProduit"
+        android:text="ajouter un produit"
+        android:onClick="button_addProd"
+        android:textSize="20sp"/>
 
 
 

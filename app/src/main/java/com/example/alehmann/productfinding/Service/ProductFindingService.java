@@ -2,6 +2,7 @@ package com.example.alehmann.productfinding.Service;
 
 
 import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Classes.Produit;
 import com.example.alehmann.productfinding.Classes.Utilisateur;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface ProductFindingService {
 
     @POST("utilisateur/")
     Call<Utilisateur> createUser(@Body Utilisateur utilisateur);
+
+    @POST("produit/")
+    Call<Produit> createProduit(@Body Produit produit);
 }
