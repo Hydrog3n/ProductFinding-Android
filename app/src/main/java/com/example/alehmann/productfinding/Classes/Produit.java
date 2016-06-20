@@ -49,4 +49,12 @@ public class Produit {
     public void setMarque(String marque) {
         this.marque = marque;
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

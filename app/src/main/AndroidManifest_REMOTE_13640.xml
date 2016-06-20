@@ -21,19 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Magasin.RecyclerMagasinActivity" />
-        <activity android:name=".Magasin.DetailMagasinActivity" />
-
-        <activity
-            android:name=".NewMagasinActivity"
-            android:label="NouveauMagasin" />
-
-        <activity
-            android:name=".NewProduitActivity"
-            android:label="NouveauProduit" />
-
         <activity android:name=".RegistrerActivity"></activity>
-
     </application>
 
 </manifest>
