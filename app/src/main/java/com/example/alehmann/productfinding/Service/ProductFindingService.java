@@ -5,6 +5,7 @@ import com.example.alehmann.productfinding.Classes.Magasin;
 import com.example.alehmann.productfinding.Classes.Produit;
 import com.example.alehmann.productfinding.Classes.Utilisateur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -20,9 +21,12 @@ public interface ProductFindingService {
     @POST("magasin/")
     Call<Magasin> createMagasin(@Body Magasin magasin);
 
-    @POST("utilisateur/")
+    @POST("utilisateur/new")
     Call<Utilisateur> createUser(@Body Utilisateur utilisateur);
 
     @POST("produit/")
     Call<Produit> createProduit(@Body Produit produit);
+
+    @POST("utilisateur/")
+    Call<Utilisateur> loginUser(@Body List<String> loginInfos);
 }

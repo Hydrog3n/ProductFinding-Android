@@ -50,12 +50,10 @@ public class RegistrerActivity extends AppCompatActivity {
 
     }
     public void inscriptionAction(View Button){
-       /* createNewUser(username_editText.getText().toString(),
+        createNewUser(username_editText.getText().toString(),
                 password_editText.getText().toString(),
                 firstname_editText.getText().toString(),
                 lastname_editText.getText().toString()
-        );*/
-        createNewUser("test","test","test","test");
-        Log.e("coucou","je suis passé");
+        );
     }
 }
