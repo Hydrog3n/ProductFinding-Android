@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void button_inscription(View button){
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, RegistrerActivity.class);
         startActivity(i);
     }
 
