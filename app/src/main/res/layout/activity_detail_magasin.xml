@@ -7,9 +7,60 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.alehmann.productfinding.DetailMagasinActivity">
+    tools:context=".Magasin.DetailMagasinActivity">
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/text_view_Mag_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom"
+        android:layout_alignParentTop="true" />
+    <TextView
+        android:id="@+id/text_view_Mag_Cp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Code Postale"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/text_view_Mag_Address" />
+    <TextView
+        android:id="@+id/text_view_Mag_Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Addresse"
+        android:layout_below="@+id/text_view_Mag_Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ville"
+        android:id="@+id/text_view_Mag_Ville"
+        android:layout_below="@+id/text_view_Mag_Cp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/recherche_produit_magasin"
+        android:layout_below="@+id/text_view_Mag_Ville"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Rechercher un produit" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_magasin_view"
+        android:layout_above="@+id/recherche_produit_magasin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_produit_view"
+        android:layout_below="@+id/recherche_produit_magasin" />
+
 </RelativeLayout>

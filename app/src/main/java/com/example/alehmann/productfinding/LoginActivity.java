@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.alehmann.productfinding.Magasin.RecyclerMagasinActivity;
+
 import com.example.alehmann.productfinding.Classes.Utilisateur;
 import com.example.alehmann.productfinding.Service.Service;
 
@@ -86,5 +88,10 @@ public class LoginActivity extends AppCompatActivity {
     public void goListShops(){
         Intent i = new Intent(this, RecyclerMagasinActivity.class);
         startActivity(i);
+    }
+
+    public void button_addMag(View button){
+        Intent intent = new Intent(LoginActivity.this, NewMagasinActivity.class);
+        startActivity(intent);
     }
 }

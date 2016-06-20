@@ -5,15 +5,26 @@ public class Produit {
     private String descriptif;
     private String marque;
     private String imageUrl;
+    private String ean;
 
-    public Produit(String desc, String ma){
-        this.descriptif = desc;
-        this.marque = ma;
+
+    public String getEan() {
+        return ean;
     }
-    public Produit(String desc, String ma, String img){
-        this(desc,ma);
-        this.imageUrl = img;
+
+    public void setEan(String ean) {
+        this.ean = ean;
     }
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 
     public int getId() {
         return id;

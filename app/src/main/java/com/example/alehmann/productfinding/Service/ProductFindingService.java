@@ -18,15 +18,25 @@ public interface ProductFindingService {
     @GET("magasin")
     Call<List<Magasin>> listMagasin();
 
+    @GET("magasin/{id}")
+    Call<Magasin> thisMagasin(@Path("id") String id);
     @POST("magasin/")
     Call<Magasin> createMagasin(@Body Magasin magasin);
 
+    @GET("magasin/{id}/produits/")
+    Call<List<Produit>> getProduitMagasin(@Path("id") String id);
     @POST("utilisateur/new")
     Call<Utilisateur> createUser(@Body Utilisateur utilisateur);
 
-    @POST("produit/")
-    Call<Produit> createProduit(@Body Produit produit);
+    @GET("produit/{id}")
+    Call<Produit> thisProduit(@Path("id") String id);
 
+    @POST("magasin/")
+    Call<Magasin> createMagasin(@Body Magasin magasin);
     @POST("utilisateur/")
     Call<Utilisateur> loginUser(@Body List<String> loginInfos);
+
+    @POST("produit/magasin/{id}")
+    Call<List<Produit>> searchProduitInMagasin(@Body String search, @Path("id") String id);
+
 }

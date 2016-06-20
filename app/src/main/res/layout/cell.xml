@@ -7,7 +7,7 @@
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:src="@drawable/abc_ic_menu_selectall_mtrl_alpha"
-        android:scaleType="center"
+        android:scaleType="fitCenter"
         android:id="@+id/cell_image"/>
     <TextView
         android:id="@+id/cell_text"
