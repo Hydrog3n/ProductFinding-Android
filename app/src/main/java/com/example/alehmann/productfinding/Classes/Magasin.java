@@ -1,6 +1,8 @@
 package com.example.alehmann.productfinding.Classes;
 
-public class Magasin {
+import java.io.Serializable;
+
+public class Magasin implements Serializable {
 
     private long id;
     private String name;

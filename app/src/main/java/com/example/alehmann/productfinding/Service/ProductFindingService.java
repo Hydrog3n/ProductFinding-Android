@@ -3,6 +3,7 @@ package com.example.alehmann.productfinding.Service;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
 import com.example.alehmann.productfinding.Classes.Produit;
+import com.example.alehmann.productfinding.Classes.ProduitInMagasin;
 import com.example.alehmann.productfinding.Classes.Utilisateur;
 
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public interface ProductFindingService {
     //
     @POST("produit/")
     Call<Produit> createProduit(@Body Produit produit);
+
+    @POST("produit/link")
+    Call<ProduitInMagasin> linkProduit(@Body ProduitInMagasin produitInMagasin);
 
     @GET("produit/{id}")
     Call<Produit> thisProduit(@Path("id") String id);

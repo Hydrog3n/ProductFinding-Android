@@ -75,9 +75,8 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView _cellLabel;
-
         private ImageView _image;
-        private Bundle objectBundle;
+        private Magasin _mag;
 
         public CellHolder(View itemView) {
             super(itemView);
@@ -85,16 +84,9 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
             _cellLabel.setOnClickListener(this);
             _image = (ImageView)itemView.findViewById(R.id.cell_image);
         }
-        public void setData(Magasin mag){
-            //TODO Pass Object Magasin in EXTRAS
-            //Creating objectBundle to pass in extra
-            objectBundle = new Bundle();
-            String idStringMap = Long.toString(mag.getId());
-            objectBundle.putString("IDMAG",idStringMap);
-            //objectBundle.putString("Address", mag.getAddress());
-            //objectBundle.putString("CP", mag.getCp());
-            //objectBundle.putString("Ville", mag.getVille());
 
+        public void setData(Magasin mag){
+            _mag = mag;
             if (mag.getLogoUrl() != null)
                 Picasso.with(_context).load(mag.getLogoUrl()).into(_image);
             else
@@ -106,7 +98,7 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
         @Override
         public void onClick(View view) {
             Intent detailIntent = new Intent(_context,DetailMagasinActivity.class);
-            detailIntent.putExtras(objectBundle);
+            detailIntent.putExtra("mag", _mag);
             _context.startActivity(detailIntent);
         }
     }
