@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             loginInfos.add(login);
             loginInfos.add(password);
 
-            // Appel WebService connexion return l'utilisateur
-
             Call<Utilisateur> callUtilisateur = Service.getInstance().loginUser(loginInfos);
             callUtilisateur.enqueue(new Callback<Utilisateur>() {
                 @Override
@@ -78,11 +76,6 @@ public class LoginActivity extends AppCompatActivity {
     public void button_inscription(View button){
         Intent i = new Intent(this, RegistrerActivity.class);
         startActivity(i);
-    }
-
-    public void button_addMag(View button) {
-        Intent r = new Intent(this, AddMagasinActivity.class);
-        startActivity(r);
     }
 
     public void showMagasinList(){
