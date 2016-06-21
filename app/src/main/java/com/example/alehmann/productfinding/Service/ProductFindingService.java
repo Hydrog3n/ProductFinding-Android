@@ -53,6 +53,9 @@ public interface ProductFindingService {
     @GET("produit/{id}")
     Call<Produit> thisProduit(@Path("id") String id);
 
+    @GET("produit/ean/{ean}")
+    Call<Produit> checkProduit(@Path("ean") String ean);
+
     @POST("produit/magasin/{id}")
     Call<List<Produit>> searchProduitInMagasin(@Body String search, @Path("id") String id);
 
