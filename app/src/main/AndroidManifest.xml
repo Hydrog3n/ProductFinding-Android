@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alehmann.productfinding">
 
+    <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +36,8 @@
             android:label="NouveauProduit" />
 
         <activity android:name=".Login.RegistrerActivity"></activity>
+        <activity android:name=".barcodereader.MainActivity"></activity>
+        <activity android:name=".barcodereader.BarcodeCaptureActivity"></activity>
 
     </application>
 
