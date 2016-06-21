@@ -64,6 +64,12 @@ public class DetailMagasinActivity extends AppCompatActivity {
 
         mag = (Magasin) this.getIntent().getExtras().getSerializable("mag");
 
+        nameMagTxV.setText(mag.getName());
+        cpMagTxV.setText(mag.getCp());
+        villeMagTxV.setText(mag.getVille());
+        addressMagTxV.setText(mag.getAddress());
+        
+
         _produits = new ArrayList<Produit>();
 
         recyclerViewProduits = (RecyclerView) findViewById(R.id.recycler_produit_view);
