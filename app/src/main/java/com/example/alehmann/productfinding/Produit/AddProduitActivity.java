@@ -11,9 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Classes.OpenProduct;
 import com.example.alehmann.productfinding.Classes.Produit;
 import com.example.alehmann.productfinding.Classes.ProduitInMagasin;
 import com.example.alehmann.productfinding.R;
+import com.example.alehmann.productfinding.Service.OpenFoodService;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.barcodereader.BarcodeCaptureActivity;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -22,6 +24,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by MeAmine on 15/06/2016.
@@ -41,6 +45,7 @@ public class AddProduitActivity extends AppCompatActivity {
     Magasin _magasin;
 
     private static final int RC_BARCODE_CAPTURE = 9001;
+    private String _ean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +96,9 @@ public class AddProduitActivity extends AppCompatActivity {
     }
 
     public void buttonNext(View button) {
-        String ean = ean_produit_editText.getText().toString();
+        _ean = ean_produit_editText.getText().toString();
 
-        Call<Produit> call = Service.getInstance().checkProduit(ean);
+        Call<Produit> call = Service.getInstance().checkProduit(_ean);
 
         call.enqueue(new Callback<Produit>() {
             @Override
@@ -101,15 +106,45 @@ public class AddProduitActivity extends AppCompatActivity {
                 _produit = response.body();
                 if (_produit != null)
                     showPrix();
-                else
-                    addProduit();
+                else {
+                    checkOpenFood(_ean);
+                }
             }
 
             @Override
             public void onFailure(Call<Produit> call, Throwable t) {
+                checkOpenFood(_ean);
+            }
+        });
+    }
+
+    private void checkOpenFood (String ean) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://fr.openfoodfacts.org/api/v0/produit/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        OpenFoodService serviceOpenFood = retrofit.create(OpenFoodService.class);
+
+        final Call<OpenProduct> openFoodCall = serviceOpenFood.getProduct(ean);
+
+        openFoodCall.enqueue(new Callback<OpenProduct>() {
+            @Override
+            public void onResponse(Call<OpenProduct> call, Response<OpenProduct> response) {
+                OpenProduct openFoodproduct = response.body();
+                if(openFoodproduct != null) {
+                    descriptif_produit_editText.setText(openFoodproduct.getProduct().getProduct_name_fr());
+                    marque_produit_editText.setText(openFoodproduct.getProduct().getBrands_tags().get(0));
+                }
+                addProduit();
+            }
+
+            @Override
+            public void onFailure(Call<OpenProduct> call, Throwable t) {
                 addProduit();
             }
         });
+
     }
 
     private void addProduit() {
