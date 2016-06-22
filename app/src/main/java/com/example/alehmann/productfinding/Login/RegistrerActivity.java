@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Utilisateur;
 import com.example.alehmann.productfinding.R;
@@ -41,17 +42,25 @@ public class RegistrerActivity extends AppCompatActivity {
         callUtilisateur.enqueue(new Callback<Utilisateur> () {
             @Override
             public void onResponse(Call<Utilisateur> call, Response<Utilisateur> response) {
-                Log.e("oui", "Jesuis làààà");
+                Toast.makeText(getApplicationContext(), "Utilisateur créé", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Utilisateur> call, Throwable t) {
-                Log.e("oui", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Erreur création utilisateur", Toast.LENGTH_LONG).show();
             }
         });
 
     }
     public void inscriptionAction(View Button){
+        if (username_editText.getText().toString().trim().length() == 0
+                || password_editText.getText().toString().trim().length() == 0
+                || firstname_editText.getText().toString().trim().length() == 0
+                || lastname_editText.getText().toString().trim().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Champ requis", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         createNewUser(username_editText.getText().toString(),
                 password_editText.getText().toString(),
                 firstname_editText.getText().toString(),

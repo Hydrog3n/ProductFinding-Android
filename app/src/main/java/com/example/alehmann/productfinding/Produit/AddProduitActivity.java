@@ -61,6 +61,12 @@ public class AddProduitActivity extends AppCompatActivity {
     }
 
     public void button_ajout(View button){
+        if (descriptif_produit_editText.getText().toString().trim().length() == 0
+                || marque_produit_editText.getText().toString().trim().length() == 0
+                || ean_produit_editText.getText().toString().trim().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Champ requis", Toast.LENGTH_LONG).show();
+            return;
+        }
         String descProd       = descriptif_produit_editText.getText().toString();
         String marqueProd     = marque_produit_editText.getText().toString();
         String url = "http://dummyimage.com/600x400/000/fff";
@@ -132,6 +138,13 @@ public class AddProduitActivity extends AppCompatActivity {
     }
 
     public void linkProduitToMagasin() {
+
+        //TODO : Test if Prix is float
+        if (prix_produit_editText.getText().toString().trim().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Champ requis", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String prix = prix_produit_editText.getText().toString();
         ProduitInMagasin pim = new ProduitInMagasin(Float.valueOf(prix), _produit, _magasin);
         Call<ProduitInMagasin> call = Service.getInstance().linkProduit(pim);

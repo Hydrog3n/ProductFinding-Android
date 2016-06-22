@@ -36,6 +36,14 @@ public class AddMagasinActivity extends AppCompatActivity {
     }
 
     public void button_ajout(View button){
+        if (nom_magasin_editText.getText().toString().trim().length() == 0
+                || ville_magasin_editText.getText().toString().trim().length() == 0
+                || cp_magasin_editText.getText().toString().trim().length() == 0
+                || adresse_magasin_editText.getText().toString().trim().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Champ requis", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String nomMag       = nom_magasin_editText.getText().toString();
         String adresseMag   = adresse_magasin_editText.getText().toString();
         String villeMag     = ville_magasin_editText.getText().toString();
@@ -46,17 +54,15 @@ public class AddMagasinActivity extends AppCompatActivity {
         call.enqueue(new Callback<Magasin>() {
             @Override
             public void onResponse(Call<Magasin> call, Response<Magasin> response) {
-                Toast.makeText(getApplicationContext(), "Magasin ajouté avec succes", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Magasin ajouté avec succes", Toast.LENGTH_LONG).show();
                 returnMagasins();
             }
 
             @Override
             public void onFailure(Call<Magasin> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Magasin n'a pas était ajouté", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Magasin n'a pas était ajouté", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
     public void returnMagasins() {
