@@ -63,30 +63,27 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
 
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final TextView _cellLabel;
+        private TextView _cellLabel;
+        private TextView _cellPrix;
 
         private ImageView _image;
-        private Bundle objectBundle;
 
+        private Produit _produit;
         public CellHolder(View itemView) {
             super(itemView);
             _cellLabel = (TextView) itemView.findViewById(R.id.cell_text);
+            _cellPrix = (TextView) itemView.findViewById(R.id.cell_prix);
             _cellLabel.setOnClickListener(this);
             _image = (ImageView)itemView.findViewById(R.id.cell_image);
         }
 
         public void setData(Produit prod){
-            //TODO Pass Object Produits in EXTRAS
-            //Creating objectBundle to pass in extra
-            objectBundle = new Bundle();
-            String idStringProd = Long.toString(prod.getId());
-            objectBundle.putString("IDPROD",idStringProd);
+            _produit = prod;
 
-            //objectBundle.putString("IDMAG",idStringMap);
-            //objectBundle.putString("Address", mag.getAddress());
-            //objectBundle.putString("CP", mag.getCp());
-            //objectBundle.putString("Ville", mag.getVille());
+            //TODO
+            //Float prix = prod.getPrix();
 
+            //_cellPrix.setText(prix.toString());
             if (prod.getImageUrl() != null)
                 Picasso.with(_context).load(prod.getImageUrl()).into(_image);
             else
@@ -97,8 +94,8 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
 
         @Override
         public void onClick(View view) {
-            Intent detailIntent = new Intent(_context,DetailProduitActivity.class);
-            detailIntent.putExtras(objectBundle);
+            Intent detailIntent = new Intent(_context, DetailProduitActivity.class);
+            detailIntent.putExtra("prod", _produit);
             _context.startActivity(detailIntent);
         }
     }
