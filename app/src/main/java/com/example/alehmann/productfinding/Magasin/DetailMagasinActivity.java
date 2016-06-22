@@ -87,7 +87,7 @@ public class DetailMagasinActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 _filtredProduit = new ArrayList<Produit>();
                 for(Produit p : _produits) {
-                    if (p.getDescriptif().contains(s))
+                    if (p.getDescriptif().toLowerCase().contains(s.toString().toLowerCase()))
                         _filtredProduit.add(p);
                 }
                 updateProduitList(_filtredProduit);
