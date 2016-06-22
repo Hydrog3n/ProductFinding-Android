@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.alehmann.productfinding.Classes.Produit;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,10 +87,10 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
             //objectBundle.putString("CP", mag.getCp());
             //objectBundle.putString("Ville", mag.getVille());
 
-            //if (mag.getLogoUrl() != null)
-            //    Picasso.with(_context).load(mag.getLogoUrl()).into(_image);
-            //else
-            //    _image.setImageBitmap(null);
+            if (prod.getImageUrl() != null)
+                Picasso.with(_context).load(prod.getImageUrl()).into(_image);
+            else
+                _image.setImageBitmap(null);
 
             _cellLabel.setText(prod.getDescriptif());
         }
