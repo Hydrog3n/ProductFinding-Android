@@ -37,29 +37,14 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
 
     private final Context _context;
     private EditText sortMagasinEditText;
-    private List<Magasin> sortedMagasin;
 
-    private List<Magasin> magasins = new ArrayList<Magasin>();
+    private List<Magasin> magasins;
+
     public RecyclerMagasinAdapter(Context c) {
         _context = c;
-        Call<List<Magasin>> callMagasins = Service.getInstance().listMagasin();
 
-        callMagasins.enqueue(new Callback<List<Magasin>> () {
+        magasins = new ArrayList<Magasin>();
 
-            @Override
-            public void onResponse(Call<List<Magasin>> call, Response<List<Magasin>> response) {
-                if (response.isSuccessful()) {
-                    magasins = response.body();
-                    notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Magasin>> call, Throwable t) {
-                Toast toast = Toast.makeText(_context, t.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
-            }
-        });
     }
 
     @Override
@@ -70,34 +55,17 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
 
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
-        sortMagasinEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                sortedMagasin = new ArrayList<Magasin>();
-                for(Magasin m : magasins) {
-                    if (m.getName().contains(s))
-                        sortedMagasin.add(m);
-                }
-                //TODO : UPDATE??
-                //updateProduitList(_filtredProduit);
-            }
-        });
         cellHolder.setData(magasins.get(i));
     }
 
     @Override
     public int getItemCount() {
         return magasins.size();
+    }
+
+    public void setData(List<Magasin> magasins) {
+        this.magasins = magasins;
+        notifyDataSetChanged();
     }
 
     public class CellHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -30,6 +30,8 @@ public class OpenProduct {
         private String product_name_fr;
         private List<String> brands_tags;
 
+        private String image_url;
+
         public String getProduct_name_fr() {
             return product_name_fr;
         }
@@ -44,6 +46,14 @@ public class OpenProduct {
 
         public void setBrands_tags(List<String> brands_tags) {
             this.brands_tags = brands_tags;
+        }
+
+        public String getImage_url() {
+            return image_url;
+        }
+
+        public void setImage_url(String image_url) {
+            this.image_url = image_url;
         }
     }
 }

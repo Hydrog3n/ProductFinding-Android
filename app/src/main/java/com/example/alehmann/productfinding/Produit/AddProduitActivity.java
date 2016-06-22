@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.barcodereader.BarcodeCaptureActivity;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,8 +48,11 @@ public class AddProduitActivity extends AppCompatActivity {
     Produit _produit;
     Magasin _magasin;
 
+    Spinner spinnerBrands;
+
     private static final int RC_BARCODE_CAPTURE = 9001;
     private String _ean;
+    private String _url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +63,8 @@ public class AddProduitActivity extends AppCompatActivity {
         marque_produit_editText     =   (EditText) findViewById(R.id.marque_produit_editText);
         prix_produit_editText       =   (EditText) findViewById(R.id.prix_produit_editText);
         descriptifTextView          =   (TextView) findViewById(R.id.descriptif_produit_vextview);
-        prixTextView          =   (TextView) findViewById(R.id.prix_produit_textview);
-        marqueTextView          =   (TextView) findViewById(R.id.marque_produit_vextview);
+        prixTextView                =   (TextView) findViewById(R.id.prix_produit_textview);
+        marqueTextView              =   (TextView) findViewById(R.id.marque_produit_vextview);
 
         buttonAjout                 =   (Button) findViewById(R.id.add_produit_button);
         buttonNext = (Button) findViewById(R.id.next_produit_button);
@@ -74,7 +81,7 @@ public class AddProduitActivity extends AppCompatActivity {
         }
         String descProd       = descriptif_produit_editText.getText().toString();
         String marqueProd     = marque_produit_editText.getText().toString();
-        String url = "http://dummyimage.com/600x400/000/fff";
+        String url = _url;
         String ean = ean_produit_editText.getText().toString();
         Produit prod = new Produit(descProd, marqueProd, url, ean);
 
@@ -126,15 +133,22 @@ public class AddProduitActivity extends AppCompatActivity {
 
         OpenFoodService serviceOpenFood = retrofit.create(OpenFoodService.class);
 
-        final Call<OpenProduct> openFoodCall = serviceOpenFood.getProduct(ean);
+        Call<OpenProduct> openFoodCall = serviceOpenFood.getProduct(ean);
 
         openFoodCall.enqueue(new Callback<OpenProduct>() {
+
             @Override
             public void onResponse(Call<OpenProduct> call, Response<OpenProduct> response) {
                 OpenProduct openFoodproduct = response.body();
-                if(openFoodproduct != null) {
+                if (openFoodproduct.getProduct() != null) {
                     descriptif_produit_editText.setText(openFoodproduct.getProduct().getProduct_name_fr());
-                    marque_produit_editText.setText(openFoodproduct.getProduct().getBrands_tags().get(0));
+                    List<String> brands =  openFoodproduct.getProduct().getBrands_tags();
+                    if (brands.size() > 0)
+                        marque_produit_editText.setText(brands.get(0));
+                    if (openFoodproduct.getProduct().getImage_url() != null)
+                        _url = openFoodproduct.getProduct().getImage_url();
+                    else
+                        _url = "";
                 }
                 addProduit();
             }

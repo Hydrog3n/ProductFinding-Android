@@ -48,6 +48,7 @@ public class DetailProduitActivity extends AppCompatActivity {
             return;
         }
 
+        //TODO
         String id = this.getIntent().getStringExtra("IDPROD");
         //Load recycler view inside Detail magasin activity, passing the id for request
         //new RecyclerProduitAdapter(this, id);
