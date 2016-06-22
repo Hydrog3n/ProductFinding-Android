@@ -83,7 +83,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 _sortedMagasin = new ArrayList<Magasin>();
                 for(Magasin m : _magasins) {
-                    if (m.getName().contains(s))
+                    if (m.getName().toLowerCase().contains(s.toString().toLowerCase()))
                         _sortedMagasin.add(m);
                 }
                 updateMagasinsList(_sortedMagasin);
