@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.Classes.Produit;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.squareup.picasso.Picasso;
@@ -32,6 +36,8 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
 
 
     private final Context _context;
+    private EditText sortMagasinEditText;
+    private List<Magasin> sortedMagasin;
 
     private List<Magasin> magasins = new ArrayList<Magasin>();
     public RecyclerMagasinAdapter(Context c) {
@@ -64,6 +70,28 @@ public class RecyclerMagasinAdapter extends RecyclerView.Adapter<RecyclerMagasin
 
     @Override
     public void onBindViewHolder(CellHolder cellHolder, int i) {
+        sortMagasinEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                sortedMagasin = new ArrayList<Magasin>();
+                for(Magasin m : magasins) {
+                    if (m.getName().contains(s))
+                        sortedMagasin.add(m);
+                }
+                //TODO : UPDATE??
+                //updateProduitList(_filtredProduit);
+            }
+        });
         cellHolder.setData(magasins.get(i));
     }
 
