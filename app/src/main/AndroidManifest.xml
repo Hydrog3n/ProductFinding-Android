@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Magasin.DetailMagasinActivity" />
-
+        <activity android:name=".Produit.DetailProduitActivity" />
         <activity
             android:name=".Magasin.AddMagasinActivity"
             android:label="NouveauMagasin" />
