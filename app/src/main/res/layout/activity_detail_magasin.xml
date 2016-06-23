@@ -8,12 +8,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Magasin.DetailMagasinActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_magasin_view"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
     <TextView
         android:id="@+id/text_view_Mag_Name"
         android:layout_width="wrap_content"
+        android:layout_below="@id/image_magasin_view"
         android:layout_height="wrap_content"
-        android:text="Nom"
-        android:layout_alignParentTop="true" />
+        android:text="Nom" />
     <TextView
         android:id="@+id/text_view_Mag_Cp"
         android:layout_width="wrap_content"
@@ -49,13 +57,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_magasin_view"
-        android:layout_above="@+id/recherche_produit_magasin"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
