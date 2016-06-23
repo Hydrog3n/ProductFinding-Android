@@ -147,8 +147,6 @@ public class AddProduitActivity extends AppCompatActivity {
                         marque_produit_editText.setText(brands.get(0));
                     if (openFoodproduct.getProduct().getImage_url() != null)
                         _url = openFoodproduct.getProduct().getImage_url();
-                    else
-                        _url = "";
                 }
                 addProduit();
             }
