@@ -24,6 +24,7 @@ public class DetailProduitActivity extends AppCompatActivity {
     private TextView marqueProdTxV;
     private TextView eanProdTxV;
     private ImageView imageProdView;
+    private TextView prixTxV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class DetailProduitActivity extends AppCompatActivity {
         descProdTxV = (TextView) findViewById(R.id.text_view_Prod_Desc);
         marqueProdTxV = (TextView) findViewById(R.id.text_view_Prod_Marque);
         imageProdView = (ImageView) findViewById(R.id.image_prod_view);
+        prixTxV = (TextView) findViewById(R.id.prix_text_view);
 
         prod = (Produit) this.getIntent().getExtras().getSerializable("prod");
         setData();
@@ -42,6 +44,7 @@ public class DetailProduitActivity extends AppCompatActivity {
     public void setData(){
         descProdTxV.setText(prod.getDescriptif());
         marqueProdTxV.setText(prod.getMarque());
+
 
         if (prod.getImageUrl() != null)
             Picasso.with(this).load(prod.getImageUrl()).into(imageProdView);
