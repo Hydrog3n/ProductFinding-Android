@@ -36,6 +36,7 @@ public class DetailProduitActivity extends AppCompatActivity {
         imageProdView = (ImageView) findViewById(R.id.image_prod_view);
 
         prod = (Produit) this.getIntent().getExtras().getSerializable("prod");
+        setData();
     }
 
     public void setData(){

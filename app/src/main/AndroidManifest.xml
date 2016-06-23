@@ -16,8 +16,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Login.LoginActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Magasin.RecyclerMagasinActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,15 +30,13 @@
         <activity
             android:name=".Magasin.AddMagasinActivity"
             android:label="NouveauMagasin" />
-
         <activity
             android:name=".Produit.AddProduitActivity"
             android:label="NouveauProduit" />
-
-        <activity android:name=".Login.RegistrerActivity"></activity>
-        <activity android:name=".barcodereader.MainActivity"></activity>
-        <activity android:name=".barcodereader.BarcodeCaptureActivity"></activity>
-
+        <activity android:name=".Login.RegistrerActivity" />
+        <activity android:name=".barcodereader.MainActivity" />
+        <activity android:name=".barcodereader.BarcodeCaptureActivity" />
+        <activity android:name=".Scanner.ScannerActivity"></activity>
     </application>
 
 </manifest>

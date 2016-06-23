@@ -13,8 +13,7 @@
         android:id="@+id/cell_text"
         android:gravity="center_vertical|left"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/background_material_light"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/cell_prix"
