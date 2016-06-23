@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
 import com.example.alehmann.productfinding.Service.Service;
+import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
 
 import java.util.List;
 

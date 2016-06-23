@@ -22,6 +22,7 @@ import com.example.alehmann.productfinding.Produit.AddProduitActivity;
 import com.example.alehmann.productfinding.Produit.RecyclerProduitAdapter;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
+import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -133,6 +134,10 @@ public class DetailMagasinActivity extends AppCompatActivity {
                 r.putExtra("mag", mag);
                 startActivity(r);
 
+                return true;
+            case R.id.action_setting:
+                Intent i = new Intent(this, UtilisateurActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -36,7 +36,8 @@
         <activity android:name=".Login.RegistrerActivity" />
         <activity android:name=".barcodereader.MainActivity" />
         <activity android:name=".barcodereader.BarcodeCaptureActivity" />
-        <activity android:name=".Scanner.ScannerActivity"></activity>
+        <activity android:name=".Scanner.ScannerActivity" />
+        <activity android:name=".Utilisateur.UtilisateurActivity"></activity>
     </application>
 
 </manifest>

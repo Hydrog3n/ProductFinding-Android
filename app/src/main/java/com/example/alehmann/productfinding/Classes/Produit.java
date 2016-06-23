@@ -9,7 +9,7 @@ public class Produit implements Serializable {
     private String imageUrl;
     private String ean;
 
-    //private float prix;
+    private float prix;
 
     public Produit(String descProd, String marqueProd, String url) {
         descriptif = descProd;
@@ -63,11 +63,11 @@ public class Produit implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-   /* public float getPrix() {
+   public float getPrix() {
         return prix;
     }
 
     public void setPrix(float prix) {
         this.prix = prix;
-    }*/
+    }
 }

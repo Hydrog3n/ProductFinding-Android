@@ -11,7 +11,9 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -40,6 +42,15 @@ public interface ProductFindingService {
 
     @POST("utilisateur/")
     Call<Utilisateur> loginUser(@Body List<String> loginInfos);
+
+    @GET("utilisateur/{token}")
+    Call<Utilisateur> getDetails(@Path("token") String token);
+
+    @PATCH("utilisateur/{id}")
+    Call<Utilisateur> updateUtilisateur(@Path("id") String id, @Body Utilisateur user);
+
+    @DELETE("utilisateur/{id}")
+    Call<Utilisateur> deleteUtilisateur(@Path("id") String id);
 
     //
     // REQUEST FOR PRODUIT

@@ -11,7 +11,6 @@ import android.widget.EditText;
 import com.example.alehmann.productfinding.Magasin.RecyclerMagasinActivity;
 
 import com.example.alehmann.productfinding.Classes.Utilisateur;
-import com.example.alehmann.productfinding.Magasin.AddMagasinActivity;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Session.SessionManager;

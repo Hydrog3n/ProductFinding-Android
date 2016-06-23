@@ -73,6 +73,8 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
             super(itemView);
             _cellLabel = (TextView) itemView.findViewById(R.id.cell_text);
             _cellPrix = (TextView) itemView.findViewById(R.id.cell_prix);
+            TextView device = (TextView) itemView.findViewById(R.id.device);
+            device.setVisibility(View.VISIBLE);
             _cellLabel.setOnClickListener(this);
             _image = (ImageView)itemView.findViewById(R.id.cell_image);
         }
@@ -80,10 +82,10 @@ public class RecyclerProduitAdapter extends RecyclerView.Adapter<RecyclerProduit
         public void setData(Produit prod){
             _produit = prod;
 
-            //TODO
-            //Float prix = prod.getPrix();
 
-            //_cellPrix.setText(prix.toString());
+            String prix = String.valueOf(prod.getPrix());
+
+            _cellPrix.setText(prix);
             if (prod.getImageUrl() != null)
                 Picasso.with(_context).load(prod.getImageUrl()).into(_image);
             else

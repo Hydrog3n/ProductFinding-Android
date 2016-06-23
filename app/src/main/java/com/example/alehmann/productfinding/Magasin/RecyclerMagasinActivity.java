@@ -13,9 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
+import com.example.alehmann.productfinding.MainActivity;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Session.SessionManager;
+import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +110,10 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             case R.id.action_add:
                 Intent r = new Intent(this, AddMagasinActivity.class);
                 startActivity(r);
+                return true;
+            case R.id.action_setting:
+                Intent i = new Intent(this, UtilisateurActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
