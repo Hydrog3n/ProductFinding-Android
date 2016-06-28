@@ -23,6 +23,8 @@ import com.example.alehmann.productfinding.Produit.RecyclerProduitAdapter;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
+import com.example.alehmann.productfinding.database.sqlite.ProduitInMagasinManager;
+import com.example.alehmann.productfinding.database.sqlite.ProduitManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,7 +46,8 @@ public class DetailMagasinActivity extends AppCompatActivity {
     private TextView addressMagTxV;
     private ImageView imageMagasinView;
     private EditText rechercheProduit;
-
+    private ProduitInMagasinManager pmm = new ProduitInMagasinManager(this);
+    private ProduitManager pm = new ProduitManager(this);
     private List<Produit> _produits;
 
     private RecyclerView recyclerViewProduits;
@@ -104,6 +107,8 @@ public class DetailMagasinActivity extends AppCompatActivity {
         
 
         _produits = new ArrayList<Produit>();
+        pm.open();
+        pmm.open();
 
         recyclerViewProduits = (RecyclerView) findViewById(R.id.recycler_produit_view);
         recyclerViewProduits.setAdapter(new RecyclerProduitAdapter(this, _produits));
@@ -154,6 +159,8 @@ public class DetailMagasinActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     _produits = response.body();
                     updateProduitList(_produits);
+                    pm.addAllProduits(_produits);
+                    pmm.addProduitsUnMagasin(_produits,mag.getId());
                 }
             }
 
@@ -161,6 +168,8 @@ public class DetailMagasinActivity extends AppCompatActivity {
             public void onFailure(Call<List<Produit>> call, Throwable t) {
                 Toast toast = Toast.makeText(_context, t.getMessage(), Toast.LENGTH_LONG);
                 toast.show();
+                _produits = pmm.getAllProduitUnMagasins(mag.getId());
+                updateProduitList(_produits);
             }
         });
     }

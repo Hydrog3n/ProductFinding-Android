@@ -3,7 +3,7 @@ package com.example.alehmann.productfinding.Classes;
 import java.io.Serializable;
 
 public class Produit implements Serializable {
-    private Long id;
+    private long id;
     private String descriptif;
     private String marque;
     private String imageUrl;
@@ -22,6 +22,10 @@ public class Produit implements Serializable {
         ean = codebarre;
     }
 
+    public Produit() {
+
+    }
+
 
     public String getEan() {
         return ean;
@@ -35,7 +39,7 @@ public class Produit implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

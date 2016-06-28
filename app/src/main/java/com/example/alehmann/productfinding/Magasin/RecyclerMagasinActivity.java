@@ -13,11 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alehmann.productfinding.Classes.Magasin;
-import com.example.alehmann.productfinding.MainActivity;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Session.SessionManager;
-import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
+import com.example.alehmann.productfinding.database.sqlite.MagasinManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
     private List<Magasin> _magasins;
     private RecyclerView recyclerView;
     private List<Magasin> _sortedMagasin;
-
+    private MagasinManager mm = new MagasinManager(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.getAdapter().notifyDataSetChanged();
 
+        mm.open();
         Call<List<Magasin>> callMagasins = Service.getInstance().listMagasin();
 
         callMagasins.enqueue(new Callback<List<Magasin>>() {
@@ -60,6 +60,8 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     _magasins = response.body();
                     updateMagasinsList(_magasins);
+                    mm.deleteAllMagasin();
+                    mm.addAllMagasins(_magasins);
                 }
             }
 
@@ -67,6 +69,8 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             public void onFailure(Call<List<Magasin>> call, Throwable t) {
                 Toast toast = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast.show();
+                _magasins=mm.getAllMagasins();
+                updateMagasinsList(_magasins);
             }
         });
 
@@ -110,10 +114,6 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             case R.id.action_add:
                 Intent r = new Intent(this, AddMagasinActivity.class);
                 startActivity(r);
-                return true;
-            case R.id.action_setting:
-                Intent i = new Intent(this, UtilisateurActivity.class);
-                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
