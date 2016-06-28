@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -133,6 +134,10 @@ public class DetailMagasinActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (RecyclerMagasinActivity.offline) {
+            Toast.makeText(getApplicationContext(), "Impossible en mode hors ligne.", Toast.LENGTH_LONG).show();
+            return super.onOptionsItemSelected(item);
+        }
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent r = new Intent(this, AddProduitActivity.class);
@@ -158,6 +163,7 @@ public class DetailMagasinActivity extends AppCompatActivity {
             public void onResponse(Call<List<Produit>> call, Response<List<Produit>> response) {
                 if (response.isSuccessful()) {
                     _produits = response.body();
+                    RecyclerMagasinActivity.offline = false;
                     updateProduitList(_produits);
                     pm.addAllProduits(_produits);
                     pmm.addProduitsUnMagasin(_produits,mag.getId());
@@ -166,8 +172,8 @@ public class DetailMagasinActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Produit>> call, Throwable t) {
-                Toast toast = Toast.makeText(_context, t.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
+                Toast.makeText(_context, "Vous êtes hors ligne. Certainne fonctions sont désactivées.", Toast.LENGTH_LONG).show();
+                RecyclerMagasinActivity.offline = true;
                 _produits = pmm.getAllProduitUnMagasins(mag.getId());
                 updateProduitList(_produits);
             }

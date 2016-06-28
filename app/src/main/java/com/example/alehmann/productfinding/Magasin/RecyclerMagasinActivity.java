@@ -1,5 +1,6 @@
 package com.example.alehmann.productfinding.Magasin;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.example.alehmann.productfinding.Classes.Magasin;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Session.SessionManager;
+import com.example.alehmann.productfinding.Utilisateur.UtilisateurActivity;
 import com.example.alehmann.productfinding.database.sqlite.MagasinManager;
 
 import java.util.ArrayList;
@@ -33,6 +36,9 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Magasin> _sortedMagasin;
     private MagasinManager mm = new MagasinManager(this);
+    private MenuItem addButton;
+    static boolean offline = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             public void onResponse(Call<List<Magasin>> call, Response<List<Magasin>> response) {
                 if (response.isSuccessful()) {
                     _magasins = response.body();
+                    offline = false;
                     updateMagasinsList(_magasins);
                     mm.deleteAllMagasin();
                     mm.addAllMagasins(_magasins);
@@ -67,8 +74,8 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Magasin>> call, Throwable t) {
-                Toast toast = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
+                Toast.makeText(getApplicationContext(), "Vous êtes hors ligne. Certainne fonctions sont désactivées.", Toast.LENGTH_LONG).show();
+                offline = true;
                 _magasins=mm.getAllMagasins();
                 updateMagasinsList(_magasins);
             }
@@ -110,10 +117,18 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (offline) {
+            Toast.makeText(getApplicationContext(), "Impossible en mode hors ligne.", Toast.LENGTH_LONG).show();
+            return super.onOptionsItemSelected(item);
+        }
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent r = new Intent(this, AddMagasinActivity.class);
                 startActivity(r);
+                return true;
+            case R.id.action_setting:
+                Intent i = new Intent(this, UtilisateurActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
