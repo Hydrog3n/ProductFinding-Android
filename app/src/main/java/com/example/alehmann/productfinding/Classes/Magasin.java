@@ -29,6 +29,11 @@ public class Magasin implements Serializable {
         this.logoUrl = url;
 
     }
+
+    public Magasin() {
+
+    }
+
     public long getId() {
         return id;
     }
