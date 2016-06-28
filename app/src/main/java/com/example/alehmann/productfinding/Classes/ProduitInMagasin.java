@@ -13,7 +13,13 @@ public class ProduitInMagasin {
 
     public ProduitInMagasin(float prix, Produit produit, Magasin mag) {
         this.prix = prix;
-        this.id = new Id(produit, mag);
+        this.setId(new Id(produit, mag));
+    }
+    public ProduitInMagasin(Produit produit, Magasin mag) {
+        this.setId(new Id(produit, mag));
+    }
+    public ProduitInMagasin() {
+
     }
 
     public float getPrix() {
@@ -24,7 +30,16 @@ public class ProduitInMagasin {
         this.prix = prix;
     }
 
-    private class Id implements Serializable {
+    public Id getId() {
+        return id;
+    }
+
+    public void setId(Id id) {
+        this.id = id;
+    }
+
+
+    public class Id implements Serializable {
 
         private Produit produit;
         private Magasin magasin;

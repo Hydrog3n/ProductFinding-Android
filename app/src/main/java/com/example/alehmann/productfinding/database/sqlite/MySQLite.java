@@ -28,6 +28,7 @@ public class MySQLite extends SQLiteOpenHelper {
         // on exécute ici les requêtes de création des tables
         sqLiteDatabase.execSQL(MagasinManager.CREATE_TABLE_MAGASIN); // création table "magasin"
         sqLiteDatabase.execSQL(ProduitManager.CREATE_TABLE_PRODUIT); // création table "produit"
+        sqLiteDatabase.execSQL(ProduitInMagasinManager.CREATE_TABLE_PRODUITINMAGASIN); // création table "produitinmagasin"
     }
 
     @Override

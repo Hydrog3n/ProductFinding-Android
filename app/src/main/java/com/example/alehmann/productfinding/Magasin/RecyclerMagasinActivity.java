@@ -16,6 +16,7 @@ import com.example.alehmann.productfinding.Classes.Magasin;
 import com.example.alehmann.productfinding.R;
 import com.example.alehmann.productfinding.Service.Service;
 import com.example.alehmann.productfinding.Session.SessionManager;
+import com.example.alehmann.productfinding.database.sqlite.MagasinManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
     private List<Magasin> _magasins;
     private RecyclerView recyclerView;
     private List<Magasin> _sortedMagasin;
-
+    private MagasinManager mm = new MagasinManager(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.getAdapter().notifyDataSetChanged();
 
+        mm.open();
         Call<List<Magasin>> callMagasins = Service.getInstance().listMagasin();
 
         callMagasins.enqueue(new Callback<List<Magasin>>() {
@@ -58,6 +60,8 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     _magasins = response.body();
                     updateMagasinsList(_magasins);
+                    mm.deleteAllMagasin();
+                    mm.addAllMagasins(_magasins);
                 }
             }
 
@@ -65,6 +69,8 @@ public class RecyclerMagasinActivity extends AppCompatActivity {
             public void onFailure(Call<List<Magasin>> call, Throwable t) {
                 Toast toast = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast.show();
+                _magasins=mm.getAllMagasins();
+                updateMagasinsList(_magasins);
             }
         });
 

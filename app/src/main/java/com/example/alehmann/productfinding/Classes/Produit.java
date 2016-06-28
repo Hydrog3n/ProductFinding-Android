@@ -22,6 +22,10 @@ public class Produit implements Serializable {
         ean = codebarre;
     }
 
+    public Produit() {
+
+    }
+
 
     public String getEan() {
         return ean;

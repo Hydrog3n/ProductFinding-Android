@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.alehmann.productfinding.Classes.Produit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -122,9 +123,29 @@ public class ProduitManager {
         return p;
     }
 
-    public Cursor getProduit() {
+    public Cursor getProduits() {
         // sélection de tous les enregistrements de la table
         return db.rawQuery("SELECT * FROM "+TABLE_NAME, null);
+    }
+    public List<Produit> getAllMagasins(){
+        Cursor c = this.getProduits();
+        List<Produit> listPro = new ArrayList<>();
+
+        if (c.moveToFirst())
+        {
+            do {
+                Produit leProduit = new Produit();
+                leProduit.setId(c.getInt(c.getColumnIndex(KEY_ID_PRODUIT)));
+                leProduit.setDescriptif(c.getString(c.getColumnIndex(KEY_DESCRIPTIF_PRODUIT)));
+                leProduit.setMarque(c.getString(c.getColumnIndex(KEY_MARQUE_PRODUIT)));
+                leProduit.setImageUrl(c.getString(c.getColumnIndex(KEY_IMAGEURL_PRODUIT)));
+                leProduit.setEan(c.getString(c.getColumnIndex(KEY_EAN_PRODUIT)));
+                listPro.add(leProduit);
+            }
+            while (c.moveToNext());
+        }
+        c.close();
+        return listPro;
     }
 
 }
