@@ -194,6 +194,7 @@ public class ProduitInMagasinManager {
                     leProd.setEan(p.getString(p.getColumnIndex(ProduitManager.KEY_EAN_PRODUIT)));
                     leProd.setImageUrl(p.getString(p.getColumnIndex(ProduitManager.KEY_IMAGEURL_PRODUIT)));
                     leProd.setMarque(p.getString(p.getColumnIndex(ProduitManager.KEY_MARQUE_PRODUIT)));
+                    leProd.setPrix(c.getLong(c.getColumnIndex(ProduitInMagasinManager.KEY_PRIX)));
                     listProdMag.add(leProd);
                     p.close();
                 }
