@@ -129,4 +129,10 @@ public class UtilisateurActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        session.checkLogin();
+    }
 }
